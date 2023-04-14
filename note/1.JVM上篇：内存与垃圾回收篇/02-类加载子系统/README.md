@@ -128,7 +128,7 @@ JVM 支持两种类型的类加载器 。分别为<mark>引导类加载器（Boo
 
 - 这个类加载使用 C/C++语言实现的，嵌套在 JVM 内部。
 - 它用来加载 Java 的核心库（JAVA_HOME/jre/lib/rt.jar、resources.jar 或 sun.boot.class.path 路径下的内容），用于提供 JVM 自身需要的类
-- 并不继承自 ava.lang.ClassLoader，没有父加载器。
+- 并不继承自 java.lang.ClassLoader，没有父加载器。
 - 加载扩展类和应用程序类加载器，并指定为他们的父类加载器。
 - 出于安全考虑，Bootstrap 启动类加载器只加载包名为 java、javax、sun 等开头的类
 
@@ -141,7 +141,7 @@ JVM 支持两种类型的类加载器 。分别为<mark>引导类加载器（Boo
 
 **应用程序类加载器（系统类加载器，AppClassLoader）**
 
-- java 语言编写，由 sun.misc.LaunchersAppClassLoader 实现
+- java 语言编写，由 sun.misc.Launcher$AppClassLoader 实现
 - 派生于 ClassLoader 类
 - 父类加载器为扩展类加载器
 - 它负责加载环境变量 classpath 或系统属性 java.class.path 指定路径下的类库
@@ -159,7 +159,7 @@ JVM 支持两种类型的类加载器 。分别为<mark>引导类加载器（Boo
 
 用户自定义类加载器实现步骤：
 
-1. 开发人员可以通过继承抽象类 ava.lang.ClassLoader 类的方式，实现自己的类加载器，以满足一些特殊的需求
+1. 开发人员可以通过继承抽象类 java.lang.ClassLoader 类的方式，实现自己的类加载器，以满足一些特殊的需求
 2. 在 JDK1.2 之前，在自定义类加载器时，总会去继承 ClassLoader 类并重写 loadClass() 方法，从而实现自定义的类加载类，但是在 JDK1.2 之后已不再建议用户去覆盖 loadclass() 方法，而是建议把自定义的类加载逻辑写在 findClass()方法中
 3. 在编写自定义类加载器时，如果没有太过于复杂的需求，可以直接继承 URLClassLoader 类，这样就可以避免自己去编写 findClass() 方法及其获取字节码流的方式，使自定义类加载器编写更加简洁。
 
@@ -268,3 +268,6 @@ Java 程序对类的使用方式分为：主动使用和被动使用。
   REF_getStatic、REF_putStatic、REF_invokeStatic 句柄对应的类没有初始化，则初始化
 
 除了以上七种情况，其他使用 Java 类的方式都被看作是对<mark>类的被动使用</mark>，都<mark>不会导致类的初始化</mark>。
+
+> q:
+> 1. 能不能举个被动使用的例子呢？
