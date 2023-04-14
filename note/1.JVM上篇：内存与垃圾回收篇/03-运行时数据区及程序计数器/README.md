@@ -75,7 +75,7 @@ JVM 中的程序计数寄存器（Program Counter Register）中，Register 的�
 
 **作用**
 
-PC 寄存器用来存储指向下一条指令的地址，也即将要执行的指令代码。由执行引擎读取下一条指令。
+PC 寄存器用来存储指向下一条指令的地址，也即将要执行的指令代码。由执行引擎读取下一条指令。（它是给 JVM 执行引擎用的，和CPU那边的没啥关系）
 
 ![image-20200705155728557](https://img-blog.csdnimg.cn/img_convert/998d864c026e5d6b565d1cfaecda2bb0.png)
 
